@@ -10,7 +10,9 @@ router.get('/', (req, res) => {
     })
     .catch(err => {
         console.log(err)
-        res.status(500).json({ message})
+        res.status(500).json({ message: "The posts information could not be retrieved" })
     })
 })
+
+module.exports = router
 
