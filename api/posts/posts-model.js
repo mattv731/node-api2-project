@@ -11,6 +11,7 @@ module.exports = {
   insertComment,
 };
 
+//DONE
 function find() {
   return db('posts');
 }
@@ -34,7 +35,7 @@ function update(id, post) {
     .update(post);
 }
 
-
+//DONE
 function remove(id) {
   return db('posts')
     .where('id', Number(id))
