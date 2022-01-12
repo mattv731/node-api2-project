@@ -15,21 +15,25 @@ function find() {
   return db('posts');
 }
 
+// DONE
 function findById(id) {
   return db('posts').where({ id: Number(id) }).first()
 }
 
+// DONE
 function insert(post) {
   return db('posts')
     .insert(post)
     .then(ids => ({ id: ids[0] }));
 }
 
+//DONE
 function update(id, post) {
   return db('posts')
     .where('id', Number(id))
     .update(post);
 }
+
 
 function remove(id) {
   return db('posts')
