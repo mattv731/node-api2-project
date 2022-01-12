@@ -35,7 +35,7 @@ router.post('/', (req, res) => {
         if(!posts) {
             res.status(400).json({ message: "Please provide title and contents for the post" })
         } else {
-            res.status(201).json(posts)
+            res.status(201).json(req.body)
         }
         })
     .catch(err => {
@@ -64,12 +64,13 @@ router.put('/:id', (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
-    Posts.remove(req.params.id)
+    const deletePost = Posts.remove(req.params.id)
     .then(posts => {
         if(!posts) {
             res.status(404).json({ message: "The post with the specified ID does not exist" })
         } else {
-            res.status(200).json({ message: 'The post has been terminated'})
+            console.log(res)
+            res.status(200).json(res.body)
         }
     })
     .catch(err => {
@@ -79,9 +80,11 @@ router.delete('/:id', (req, res) => {
 })
 
 router.get('/:id/comments', (req, res) => {
-    Posts.findPostComments(req.params.id)
+    const { id } = req.params
+    console.log(req)
+    Posts.findPostComments(id)
     .then(posts => {
-        if(!posts) {
+        if(posts.length < 1) {
             res.status(404).json({ message: "The post with the specified ID does not exist" })
         } else {
             res.status(200).json(posts)
